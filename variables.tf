@@ -1,3 +1,8 @@
+variable "region" {
+  description = "The region used to launch this module resources."
+  default     = ""
+}
+
 # Load Balancer Instance variables
 variable "slb" {
   description = "The load balancer ID used to add a new listener."
@@ -129,3 +134,4 @@ variable "persistence_timeout" {
   description = "Timeout of connection persistence."
   default     = 0
 }
+
