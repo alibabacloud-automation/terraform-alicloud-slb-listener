@@ -2,19 +2,17 @@ Alibaba Cloud Load Balancer (SLB) Listener Terraform Module
 terraform-alicloud-slb-listener
 =====================================================================
 
-English | [简体中文](https://github.com/terraform-alicloud-modules/terraform-alicloud-slb-listener/blob/master/README-CN.md)
+本 Module 用于在阿里云上快速创建slb listeners资源 
 
-Terraform module which creates slb listener resources on Alibaba Cloud.
+本 Module 支持创建以下资源:
 
-These types of resources are supported:
+* [API Slb Listener](https://www.terraform.io/docs/providers/alicloud/r/slb_listener.html)
 
-* [Slb Listener](https://www.terraform.io/docs/providers/alicloud/r/slb_listener.html)
+## Terraform 版本
 
-## Terraform versions
+本 Module 要求使用 Terraform 0.12 和 阿里云 Provider 1.56.0+。
 
-The Module requires Terraform 0.12 and Terraform Provider AliCloud 1.56.0+.
-
-## Usage
+## 用法
 
 ```hcl
 module "slb_listener" {
@@ -36,7 +34,7 @@ module "slb_listener" {
     }
   ]
   
-  // health_check will apply to all of listeners if health checking is not set in the listeners
+  // 您也可以选择不填此项以使用默认值
   health_check = {
     health_check              = "on"
     health_check_type         = "tcp"
@@ -49,7 +47,7 @@ module "slb_listener" {
     health_check_http_code    = "http_2xx"
   }
   
-  // advanced_setting will apply to all of listeners if some fields are not set in the listeners
+  // 您也可以选择不填此项以使用默认值
   advanced_setting = {
     sticky_session      = "on"
     sticky_session_type = "server"
@@ -61,14 +59,14 @@ module "slb_listener" {
     persistence_timeout = "5"
   }
   
-  // x_forwarded_for will apply to all of listeners if it is not set in the listeners
+  // 您也可以选择不填此项以使用默认值
   x_forwarded_for = {
     retrive_slb_ip    = "true"
     retrive_slb_id    = "false"
     retrive_slb_proto = "true"
   }
   
-  // ssl_certificates will apply to all of https listeners if it is not set in the listeners
+  // 您也可以选择不填此项以使用默认值
   ssl_certificates = {
     tls_cipher_policy = "tls_cipher_policy_1_0"
   }
@@ -76,30 +74,29 @@ module "slb_listener" {
 
 ```
 
-## Examples
+## 示例
 
-* [Basic example](https://github.com/terraform-alicloud-modules/terraform-alicloud-slb-listener/tree/master/examples/basic-example)
+* [基础示例](https://github.com/terraform-alicloud-modules/terraform-alicloud-slb-listener/tree/master/examples/basic-example)
 
-## Notes
+## 注意事项
 
-* This module using AccessKey and SecretKey are from `profile` and `shared_credentials_file`.
-If you have not set them yet, please install [aliyun-cli](https://github.com/aliyun/aliyun-cli#installation) and configure it.
+* 本 Module 使用的 AccessKey 和 SecretKey 可以直接从 `profile` 和 `shared_credentials_file` 中获取。如果未设置，可通过下载安装 [aliyun-cli](https://github.com/aliyun/aliyun-cli#installation) 后进行配置。
 
-Submit Issues
--------------
-If you have any problems when using this module, please opening a [provider issue](https://github.com/terraform-providers/terraform-provider-alicloud/issues/new) and let us know.
+提交问题
+-------
+如果在使用该 Terraform Module 的过程中有任何问题，可以直接创建一个 [Provider Issue](https://github.com/terraform-providers/terraform-provider-alicloud/issues/new)，我们将根据问题描述提供解决方案。
 
-**Note:** There does not recommend to open an issue on this repo.
+**注意:** 不建议在该 Module 仓库中直接提交 Issue。
 
-Authors
+作者
 -------
 Created and maintained by Wang li(@Lexsss, 13718193219@163.com) and He Guimin(@xiaozhu36, heguimin36@163.com)
 
-License
+许可
 ----
 Apache 2 Licensed. See LICENSE for full details.
 
-Reference
+参考
 ---------
 * [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
 * [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)

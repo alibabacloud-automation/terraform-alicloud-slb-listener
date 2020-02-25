@@ -1,137 +1,163 @@
 variable "region" {
   description = "The region used to launch this module resources."
+  type        = string
   default     = ""
 }
 
+variable "profile" {
+  description = "The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable."
+  type        = string
+  default     = ""
+}
+variable "shared_credentials_file" {
+  description = "This is the path to the shared credentials file. If this is not set and a profile is specified, $HOME/.aliyun/config.json will be used."
+  type        = string
+  default     = ""
+}
+
+variable "skip_region_validation" {
+  description = "Skip static validation of region ID. Used by users of alternative AlibabaCloud-like APIs or users w/ access to regions that are not public (yet)."
+  type        = bool
+  default     = false
+}
 # Load Balancer Instance variables
 variable "slb" {
-  description = "The load balancer ID used to add a new listener."
+  description = "The load balancer ID used to add one or more listeners."
+  type        = string
 }
 
 # Listener common variables
-variable "protocol" {
-  description = "The protocol to listen on."
+variable "create" {
+  description = "Whether to create load balancer listeners."
+  type        = bool
+  default     = true
+}
+variable "listeners" {
+  description = "List of slb listeners. Each item can set all or part fields of alicloud_slb_listener resource."
+  type        = list(map(string))
+  default     = []
 }
 
-variable "backend_port" {
-  description = "Port used by the Server Load Balancer instance backend."
+variable "health_check" {
+  description = "The slb listener health check settings to use on listeners. It's supports fields 'healthy_threshold','unhealthy_threshold','health_check_timeout', 'health_check', 'health_check_type', 'health_check_connect_port', 'health_check_domain', 'health_check_uri', 'health_check_http_code', 'health_check_method' and 'health_check_interval'"
+  type        = map(string)
+  default     = {}
 }
 
-variable "frontend_port" {
-  description = "Port used by the Server Load Balancer instance frontend."
+variable "advanced_setting" {
+  description = "The slb listener advanced settings to use on listeners. It's supports fields 'sticky_session', 'sticky_session_type', 'cookie', 'cookie_timeout', 'gzip', 'persistence_timeout', 'acl_status', 'acl_type', 'acl_id', 'idle_timeout' and 'request_timeout'."
+  type        = map(string)
+  default     = {}
 }
 
-variable "bandwidth" {
-  description = "Bandwidth peak of Listener. Valid in -1/1-1000Mbps and -1 means there is no limit when SLB is 'PayByTraffic'"
-  default     = -1
+variable "x_forwarded_for" {
+  description = "Additional HTTP Header field 'X-Forwarded-For' to use on listeners. It's supports fields 'retrive_slb_ip', 'retrive_slb_id' and 'retrive_slb_proto'"
+  type        = map(bool)
+  default     = {}
 }
 
-variable "server_group_id" {
-  description = "The ID of server group."
-  default     = ""
+variable "ssl_certificates" {
+  description = "SLB Server certificate settings to use on listeners. It's supports fields 'tls_cipher_policy', 'server_certificate_id' and 'enable_http2'"
+  type        = map(string)
+  default     = {}
 }
 
-variable "scheduler" {
-  description = "Scheduling algorithm."
-  default     = "wrr"
-}
+
+
+# Deprecated variables
 
 variable "healthy_threshold" {
-  description = "Threshold determining the result of the health check is success."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
   default     = 3
 }
 
 variable "unhealthy_threshold" {
-  description = "Threshold determining the result of the health check is fail."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
   default     = 3
 }
 
 variable "health_check_timeout" {
-  description = "Maximum timeout of each health check response."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
   default     = 5
 }
 
 variable "health_check_interval" {
-  description = "Time interval of health checks."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
   default     = 2
 }
 
-# HTTP and HTTPS listener variables
 variable "enable_sticky_session" {
-  description = "Whether to keep load balancer listener session."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
 variable "sticky_session_type" {
-  description = "Listener sticky session type."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = "server"
 }
 
 variable "cookie" {
-  description = "Listener cookie."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = ""
 }
 
 variable "cookie_timeout" {
-  description = "Listener cookie timeout."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = 86400
 }
 
 variable "enable_health_check" {
-  description = "Whether to enable health check."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
 variable "enable_gzip" {
-  description = "Whether to enable Gzip compress."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
 variable "retrive_slb_ip" {
-  description = "Whether to use the XForwardedFor_SLBIP header to obtain the public IP address of the SLB instance."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
 variable "retrive_slb_id" {
-  description = "Whether to use the XForwardedFor header to obtain the ID of the SLB instance."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
 variable "retrive_slb_proto" {
-  description = " Whether to use the XForwardedFor_proto header to obtain the protocol used by the listener."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = false
 }
 
-# TCP, HTTP and HTTPS listener variables
 variable "health_check_connect_port" {
-  description = "Port used for health check. Default to backend server port."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = ""
 }
 
 variable "health_check_domain" {
-  description = " Domain name used for health check."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = ""
 }
 
 variable "health_check_uri" {
-  description = "URI used for health check."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = ""
 }
 
 variable "health_check_http_code" {
-  description = "Regular health check HTTP status code. Multiple codes are segmented by ','."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = "http_2xx"
 }
 
-# TCP listener variables
 variable "health_check_type" {
-  description = "Type of health check."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = "tcp"
 }
 
-// TCP and UDP listener variables
 variable "persistence_timeout" {
-  description = "Timeout of connection persistence."
+  description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
   default     = 0
 }
 
