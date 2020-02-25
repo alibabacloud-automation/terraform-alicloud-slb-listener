@@ -20,6 +20,8 @@ module "slb_listener" {
   profile = "Your-Profile-Name"
   region  = "cn-beijing"
   slb     = "lb-bp1xxxxxxxxxxxxxx"
+  
+  // listeners 中可以定义所有的listener相关的参数。
   listeners = [
     {
       server_group_ids  = "rsp-bp1xxxxxxx1,rsp-bp1xxxxxx2"
@@ -34,7 +36,7 @@ module "slb_listener" {
     }
   ]
   
-  // 您也可以选择不填此项以使用默认值
+  // health_check 中定义的参数使用有所有 listeners 中定义的listener，用于对其参数的补充
   health_check = {
     health_check              = "on"
     health_check_type         = "tcp"
@@ -47,7 +49,7 @@ module "slb_listener" {
     health_check_http_code    = "http_2xx"
   }
   
-  // 您也可以选择不填此项以使用默认值
+  // advanced_setting 中定义的参数使用有所有 listeners 中定义的listener，用于对其参数的补充
   advanced_setting = {
     sticky_session      = "on"
     sticky_session_type = "server"
@@ -59,14 +61,14 @@ module "slb_listener" {
     persistence_timeout = "5"
   }
   
-  // 您也可以选择不填此项以使用默认值
+  // x_forwarded_for 中定义的参数使用有所有 http／https listeners 中定义的listener，用于对其参数的补充
   x_forwarded_for = {
     retrive_slb_ip    = "true"
     retrive_slb_id    = "false"
     retrive_slb_proto = "true"
   }
   
-  // 您也可以选择不填此项以使用默认值
+  // ssl_certificates 中定义的参数使用有所有 https 的 listeners 中定义的listener，用于对其参数的补充
   ssl_certificates = {
     tls_cipher_policy = "tls_cipher_policy_1_0"
   }
