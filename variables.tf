@@ -1,22 +1,22 @@
 variable "region" {
-  description = "The region used to launch this module resources."
+  description = "(Deprecated from version 1.3.0)The region used to launch this module resources."
   type        = string
   default     = ""
 }
 
 variable "profile" {
-  description = "The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable."
+  description = "(Deprecated from version 1.3.0)The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable."
   type        = string
   default     = ""
 }
 variable "shared_credentials_file" {
-  description = "This is the path to the shared credentials file. If this is not set and a profile is specified, $HOME/.aliyun/config.json will be used."
+  description = "(Deprecated from version 1.3.0)This is the path to the shared credentials file. If this is not set and a profile is specified, $HOME/.aliyun/config.json will be used."
   type        = string
   default     = ""
 }
 
 variable "skip_region_validation" {
-  description = "Skip static validation of region ID. Used by users of alternative AlibabaCloud-like APIs or users w/ access to regions that are not public (yet)."
+  description = "(Deprecated from version 1.3.0)Skip static validation of region ID. Used by users of alternative AlibabaCloud-like APIs or users w/ access to regions that are not public (yet)."
   type        = bool
   default     = false
 }
@@ -68,96 +68,115 @@ variable "ssl_certificates" {
 
 variable "healthy_threshold" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 3
 }
 
 variable "unhealthy_threshold" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 3
 }
 
 variable "health_check_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 5
 }
 
 variable "health_check_interval" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 2
 }
 
 variable "enable_sticky_session" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "sticky_session_type" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "server"
 }
 
 variable "cookie" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "cookie_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = number
   default     = 86400
 }
 
 variable "enable_health_check" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "enable_gzip" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_ip" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_id" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_proto" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "health_check_connect_port" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_domain" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_uri" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_http_code" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "http_2xx"
 }
 
 variable "health_check_type" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "tcp"
 }
 
 variable "persistence_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = number
   default     = 0
 }
 
