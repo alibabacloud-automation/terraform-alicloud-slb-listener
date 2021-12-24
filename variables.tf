@@ -68,96 +68,115 @@ variable "ssl_certificates" {
 
 variable "healthy_threshold" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 3
 }
 
 variable "unhealthy_threshold" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 3
 }
 
 variable "health_check_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 5
 }
 
 variable "health_check_interval" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'health_check' instead."
+  type        = number
   default     = 2
 }
 
 variable "enable_sticky_session" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "sticky_session_type" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "server"
 }
 
 variable "cookie" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "cookie_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = number
   default     = 86400
 }
 
 variable "enable_health_check" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "enable_gzip" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_ip" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_id" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "retrive_slb_proto" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = bool
   default     = false
 }
 
 variable "health_check_connect_port" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_domain" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_uri" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = ""
 }
 
 variable "health_check_http_code" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "http_2xx"
 }
 
 variable "health_check_type" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = string
   default     = "tcp"
 }
 
 variable "persistence_timeout" {
   description = "(Deprecated) It has been deprecated from 1.2.0, use 'listeners' and 'advance_setting' instead."
+  type        = number
   default     = 0
 }
 
