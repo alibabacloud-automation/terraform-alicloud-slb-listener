@@ -47,14 +47,16 @@ locals {
 resource "alicloud_slb_listener" "this" {
   count            = var.create ? length(local.listeners) : 0
   load_balancer_id = var.slb
-  backend_port     = lookup(local.listeners[count.index], "backend_port")
-  frontend_port    = lookup(local.listeners[count.index], "frontend_port")
-  protocol         = lookup(local.listeners[count.index], "protocol")
-  bandwidth        = lookup(local.listeners[count.index], "bandwidth", "-1")
-  scheduler        = lookup(local.listeners[count.index], "scheduler", "wrr")
-  server_group_id  = lookup(local.listeners[count.index], "server_group_id")
+
+  server_group_id = lookup(local.listeners[count.index], "server_group_id")
+  backend_port    = lookup(local.listeners[count.index], "backend_port")
+  frontend_port   = lookup(local.listeners[count.index], "frontend_port")
+  protocol        = lookup(local.listeners[count.index], "protocol")
+  bandwidth       = lookup(local.listeners[count.index], "bandwidth", "-1")
+  scheduler       = lookup(local.listeners[count.index], "scheduler", "wrr")
 
   // Health Check
+  health_check              = lookup(local.listeners[count.index], "health_check")
   healthy_threshold         = lookup(local.listeners[count.index], "healthy_threshold")
   unhealthy_threshold       = lookup(local.listeners[count.index], "unhealthy_threshold")
   health_check_timeout      = lookup(local.listeners[count.index], "health_check_timeout")
@@ -64,13 +66,13 @@ resource "alicloud_slb_listener" "this" {
   health_check_uri          = lookup(local.listeners[count.index], "health_check_uri")
   health_check_http_code    = lookup(local.listeners[count.index], "health_check_http_code")
   health_check_type         = lookup(local.listeners[count.index], "health_check_type")
+  health_check_method       = lookup(local.listeners[count.index], "health_check_method")
 
   // Advance setting
   sticky_session      = lookup(local.listeners[count.index], "sticky_session")
   sticky_session_type = lookup(local.listeners[count.index], "sticky_session_type")
   cookie              = lookup(local.listeners[count.index], "cookie")
   cookie_timeout      = lookup(local.listeners[count.index], "cookie_timeout")
-  health_check        = lookup(local.listeners[count.index], "health_check")
   gzip                = lookup(local.listeners[count.index], "gzip")
   persistence_timeout = lookup(local.listeners[count.index], "persistence_timeout")
   established_timeout = lookup(local.listeners[count.index], "established_timeout")
@@ -92,5 +94,3 @@ resource "alicloud_slb_listener" "this" {
   tls_cipher_policy     = lookup(local.listeners[count.index], "tls_cipher_policy")
   enable_http2          = lookup(local.listeners[count.index], "enable_http2")
 }
-
-
