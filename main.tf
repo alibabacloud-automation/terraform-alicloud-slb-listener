@@ -45,7 +45,7 @@ locals {
 }
 
 resource "alicloud_slb_listener" "this" {
-  count            = var.create ? length(local.listeners) : 0
+  count            = var.create ? length(var.listeners) : 0
   load_balancer_id = var.slb
 
   server_group_id = lookup(local.listeners[count.index], "server_group_id")
