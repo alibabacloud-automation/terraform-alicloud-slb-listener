@@ -1,4 +1,10 @@
-## 1.4.0 (Unreleased)
+## 1.5.0 (Unreleased)
+## 1.4.0 (August 9, 2023)
+
+IMPROVEMENTS:
+
+- Improves the module example [GH-5](https://github.com/terraform-alicloud-modules/terraform-alicloud-slb-listener/pull/5)
+
 ## 1.3.0 (November 16, 2021)
 
 IMPROVEMENTS:
