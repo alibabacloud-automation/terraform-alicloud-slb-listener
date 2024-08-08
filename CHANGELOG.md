@@ -1,6 +1,9 @@
-## 1.5.0 (Unreleased)
-## 1.4.0 (August 9, 2023)
+## 1.5.0 (August 8, 2024)
 
+- deprecate [GH-8](https://github.com/alibabacloud-automation/terraform-alicloud-slb-listener/pull/8)
+
+## 1.4.0 (August 9, 2023)
+s
 IMPROVEMENTS:
 
 - Improves the module example [GH-5](https://github.com/terraform-alicloud-modules/terraform-alicloud-slb-listener/pull/5)
